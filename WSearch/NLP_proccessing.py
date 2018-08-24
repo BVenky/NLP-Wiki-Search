@@ -32,7 +32,7 @@ model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=T
 #Done
 
 documents = []
-documents_dir = Path('/Users/Venky/Downloads/bbc/politics')
+documents_dir = Path('/bbc/politics')
 
 for file_path in documents_dir.files('*.txt'):
     with file_path.open(mode='rt', encoding='utf-8') as fp:
