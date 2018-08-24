@@ -1,4 +1,4 @@
-Stopwords
+stopwords
 punkt
 porter_test
 vader_lexicon
