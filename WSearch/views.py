@@ -12,9 +12,6 @@ import wikipedia
 import parsedatetime
 
 @csrf_exempt
-def index(request):
-    return render(request, 'index.html')
-
 def form(request):
     '''try:
         search_word=form["s"].value
@@ -74,3 +71,5 @@ def form(request):
 def post_details(request):
     return render(request, 'post_details.html')
 # Create your views here.
+def index(request):
+    return render(request, 'index.html')
