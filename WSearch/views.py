@@ -10,7 +10,11 @@ import re
 import sumy
 import wikipedia
 import parsedatetime
+
 @csrf_exempt
+def index(request):
+    return render(request, 'index.html')
+
 def form(request):
     '''try:
         search_word=form["s"].value
@@ -23,7 +27,7 @@ def form(request):
 
 
     if request.POST:
-        errors=[]
+        #errors=[]
         '''if( 's' in request.POST) and ('l' in request.POST) and ('w' in request.POST):
             search_word=request.POST['s']
             n=request.POST['l']
@@ -34,7 +38,7 @@ def form(request):
                 if not search_word:
                     search_word="nlpwikisearch"
                     ern="Search"
-                    errors.append('Enter a search term.')
+                    #errors.append('Enter a search term.')
             '''else:
                 search_word="nlpwikisearch"
                 ern="Search"'''
@@ -55,42 +59,7 @@ def form(request):
                 lang="en"
                 ern="language"'''
             num_res=5
-            [x,j]=WSearch.NLP_proccessing.check(search_word)
-            error=" "
-            input_text=" "
-            #timeline=[None]SSS
-            #word_2_vec=[None]
-            wiki_link=" "
-            timeline_sentences=[]
-            sent_t=[]
-            d2v_vector=[]
-            if(x != 0 and j == 1):
-                word=x[0]
-                wikipedia.set_lang(lang)
-                inp_pg=wikipedia.page(word)
-                input_text=wikipedia.summary(inp_pg.title,sentences=8)
-                wiki_link=inp_pg.url
-                processed_txt=WSearch.NLP_proccessing.pre_proc(input_text)
-                sentences=WSearch.NLP_proccessing.sent_tokenize(inp_pg.content)
-                [sent_t, timeline_sentences, d2v_vector]=WSearch.NLP_proccessing.timelinesentences(sentences,n)
-                error=("There is no wikipedia file named by %s.\n But here is a page related to your search...\n%s " %  (search_word,word))
-            elif (j==3 and x==0):
-                error=(" Please Wait or Retry")
-            elif (j==4 ):
-                error=(" %s field is empty" % ern)
-            elif (j==2 and x==0):
-                error=("There is no wikipedia file named by %s" %  search_word)
-            else:
-                wikipedia.set_lang(lang)
-                gt=wikipedia.search(search_word, results=num_res)
-                inp_pg=wikipedia.page(search_word)
-                input_text=wikipedia.summary(inp_pg.title,sentences=8)
-                wiki_link=inp_pg.url
-                processed_txt=WSearch.NLP_proccessing.pre_proc(input_text)
-                sentences=WSearch.NLP_proccessing.sent_tokenize(inp_pg.content)
-                [sent_t, timeline_sentences, d2v_vector]=WSearch.NLP_proccessing.timelinesentences(sentences,n)
-                #print(" ")
-                #print(input_text)
+            [wiki_link,input_text,j,error,sent_t,timeline_sentences,n,d2v_vector]=WSearch.NLP_proccessing.search_func(search_word,n,lang,num_res)
             return render(request,'post_details.html',
                                  {'s_w':search_word,'wiki':wiki_link,
                                  'sum':input_text, 'msg':j,
@@ -104,6 +73,4 @@ def form(request):
 
 def post_details(request):
     return render(request, 'post_details.html')
-from django.shortcuts import render
-
 # Create your views here.
