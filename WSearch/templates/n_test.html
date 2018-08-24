@@ -1,0 +1,72 @@
+{% load static %}
+<html>
+    <head>
+      <style>
+#rcorners {
+    border-radius: 5px 70px;
+    background: url(paper.gif);
+    background-position: left top;
+    background-repeat: repeat;
+    padding: 20px;
+    width: 200px;
+    height: 15px;
+}
+#rcorners_button{
+  border-radius: 70px 70px;
+  background: url(paper.gif);
+  background-position: left top;
+  background-repeat: repeat;
+  padding: 20px;
+  width: 100px;
+  height: 5px;
+}
+#example1 {
+    background: url(https://media.giphy.com/media/aJdHgmJbATnOw/giphy.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 1;
+}
+#example2 {
+    background: url(https://i.gifer.com/ENjk.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+        background-blend-mode: lighten;
+}
+#example3{
+    background: url(http://backgroundcheckall.com/wp-content/uploads/2017/12/background-images-for-websites-professional-white-6.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#example4 {
+    background: url(https://media.giphy.com/media/iwRzEH33IULPa/giphy.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+        background-blend-mode: lighten;
+}
+#example5{
+    background: url(https://studentwebhosting.com/media/uploads/animated-web-preloader.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+        background-blend-mode: lighten;
+}
+</style>
+        <title>Wiki Search</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    </head>
+    <body id="example3" >
+        <div class="page-header">
+            <h1><center><a href="/">Welcome To WikiSearch</a></center></h1>
+        </div>
+        <div class="content container">
+          <font color="Teal">
+            {% block form %}
+            {% endblock %}
+            {% block content %}
+            {% endblock %}
+          </font>
+        </div>
+    </body>
+</html>'
