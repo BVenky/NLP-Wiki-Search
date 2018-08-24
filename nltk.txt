@@ -4,4 +4,3 @@ porter_test
 vader_lexicon
 word2vec_sample
 wordnet
-corpus
