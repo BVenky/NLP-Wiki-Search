@@ -129,6 +129,8 @@ def timelinesentences(sentences,n):
     j=[]
     cal=0
     proc_sen=[]
+    t_summary=""
+    error_t=""
     cal = parsedatetime.Calendar()
     p_t, parse_status = cal.parse("")
     present_t=datetime(*p_t[:6])
@@ -181,7 +183,8 @@ def timelinesentences(sentences,n):
         z=j[0]
     print(z)
     print(timeline_sentences[z])
-    return sent_t[z], t_summary, proc_sen
+    return error_t, sent_t[z], t_summary, proc_sen
+
 
 def search_func(search_word,n,lang,num_res):
     [x,j]=check(search_word)
@@ -193,6 +196,7 @@ def search_func(search_word,n,lang,num_res):
     timeline_sentences=[]
     sent_t=[]
     d2v_vector=[]
+    error_t=""
     if(x != 0 and j == 1):
         word=x[0]
         wikipedia.set_lang(lang)
@@ -201,7 +205,7 @@ def search_func(search_word,n,lang,num_res):
         wiki_link=inp_pg.url
         processed_txt=pre_proc(input_text)
         sentences=sent_tokenize(inp_pg.content)
-        [sent_t, timeline_sentences, d2v_vector]= timelinesentences(sentences,n)
+        [error_t, sent_t, timeline_sentences, d2v_vector]= timelinesentences(sentences,n)
         error=("There is no wikipedia file named by %s.\n But here is a page related to your search...\n%s " %  (search_word,word))
     elif (j==3 and x==0):
         error=(" Please Wait or Retry")
@@ -215,7 +219,7 @@ def search_func(search_word,n,lang,num_res):
         wiki_link=inp_pg.url
         processed_txt= pre_proc(input_text)
         sentences= sent_tokenize(inp_pg.content)
-        [sent_t, timeline_sentences, d2v_vector]= timelinesentences(sentences,n)
+        [error_t, sent_t, timeline_sentences, d2v_vector]= timelinesentences(sentences,n)
         #print(" ")
         #print(input_text)
-    return wiki_link,input_text,j,error,sent_t,timeline_sentences,n,d2v_vector
+    return wiki_link,input_text,j,error,sent_t,timeline_sentences,n,d2v_vector, error_t

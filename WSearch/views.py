@@ -43,7 +43,7 @@ def form(request):
             if ('l' in request.POST):
                 n=request.POST['l']
                 if not n:
-                    n=""
+                    n=0
                     ern="No.of timeline sentences"
             '''else :
                 n=""
@@ -57,13 +57,13 @@ def form(request):
                 lang="en"
                 ern="language"'''
             num_res=5
-            lang="es"
-            [wiki_link,input_text,j,error,sent_t,timeline_sentences,n,d2v_vector]=WSearch.NLP_proccessing.search_func(search_word,n,lang,num_res)
+            lang="en"
+            [wiki_link,input_text,j,error,sent_t,timeline_sentences,n,d2v_vector,error_t]=WSearch.NLP_proccessing.search_func(search_word,n,lang,num_res)
             return render(request,'post_details.html',
                                  {'s_w':search_word,'wiki':wiki_link,
                                  'sum':input_text, 'msg':j,
                                  'err':error, 'time':sent_t,'timeline_sentences':timeline_sentences,
-                                 'n':n, 'd2v':d2v_vector})
+                                 'n':n, 'd2v':d2v_vector, 'er_t':error_t})
         else:
             return render_to_response('form.html',c)
 
