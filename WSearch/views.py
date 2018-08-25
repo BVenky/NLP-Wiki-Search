@@ -3,15 +3,15 @@ from django.views.generic import TemplateView
 from django.template import RequestContext
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_protect
-from django.views.decorators.csrf import csrf_exempt
+#from django.views.decorators.csrf import csrf
+from django.template.context_processors import csrf
+
 import WSearch.NLP_proccessing
 
 import re
 import sumy
 import wikipedia
 import parsedatetime
-
-@csrf_exempt
 def form(request):
     '''try:
         search_word=form["s"].value
@@ -21,7 +21,8 @@ def form(request):
         print(" ")
     except (UnicodeError, UnicodeEncodeError) as e:
         print(e)'''
-
+    c = {}
+    c.update(csrf(request))
 
     if request.POST:
         #errors=[]
@@ -63,10 +64,10 @@ def form(request):
                                  'err':error, 'time':sent_t,'timeline_sentences':timeline_sentences,
                                  'n':n, 'd2v':d2v_vector})
         else:
-            return render_to_response('form.html')
+            return render_to_response('form.html',c)
 
     else:
-        return render_to_response('form.html')
+        return render_to_response('form.html',c)
 
 def post_details(request):
     return render(request, 'post_details.html')
