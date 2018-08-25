@@ -205,8 +205,6 @@ def search_func(search_word,n,lang,num_res):
         error=("There is no wikipedia file named by %s.\n But here is a page related to your search...\n%s " %  (search_word,word))
     elif (j==3 and x==0):
         error=(" Please Wait or Retry")
-    elif (j==4 ):
-        error=(" %s field is empty" % ern)
     elif (j==2 and x==0):
         error=("There is no wikipedia file named by %s" %  search_word)
     else:
@@ -220,4 +218,4 @@ def search_func(search_word,n,lang,num_res):
         [sent_t, timeline_sentences, d2v_vector]= timelinesentences(sentences,n)
         #print(" ")
         #print(input_text)
-        return wiki_link,input_text,j,error,sent_t,timeline_sentences,n,d2v_vector
+    return wiki_link,input_text,j,error,sent_t,timeline_sentences,n,d2v_vector

@@ -48,15 +48,16 @@ def form(request):
             '''else :
                 n=""
                 ern="No.of timeline sentences"'''
-            if ('w' in request.POST):
+            '''if ('w' in request.POST):
                 lang=request.POST['w']
                 if not lang:
                     lang="en"
-                    ern="language"
+                    ern="language"'''
             '''else:
                 lang="en"
                 ern="language"'''
             num_res=5
+            lang="es"
             [wiki_link,input_text,j,error,sent_t,timeline_sentences,n,d2v_vector]=WSearch.NLP_proccessing.search_func(search_word,n,lang,num_res)
             return render(request,'post_details.html',
                                  {'s_w':search_word,'wiki':wiki_link,
