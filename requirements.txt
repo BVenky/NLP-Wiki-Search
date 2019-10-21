@@ -18,7 +18,7 @@ idna==2.7
 jmespath==0.9.3
 lexrank==0.1.0
 lxml==4.2.4
-nltk==3.3
+nltk==3.4.5
 numpy==1.15.0
 parsedatetime==2.4
 path.py==11.0.1
